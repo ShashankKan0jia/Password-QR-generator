@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="icon" type="image/png" href="img2.png" />
+    <title>Password & QR Generator</title>
+  </head>
+  <body>
+    <div class="background"></div>
+    <div class="container">
+      <h2>Password & QR Generator</h2>
+      <div class="result-container">
+        <span id="result"></span>
+        <button class="btn" id="clipboard">📋</button>
+      </div>
+      <input
+        type="number"
+        id="length"
+        placeholder="Password Length (4-20)"
+        min="4"
+        max="20"
+      />
+      <div class="settings">
+        <label
+          ><input type="checkbox" id="uppercase" /> Include Uppercase
+          Letters</label
+        >
+        <label
+          ><input type="checkbox" id="lowercase" /> Include Lowercase
+          Letters</label
+        >
+        <label><input type="checkbox" id="numbers" /> Include Numbers</label>
+        <label><input type="checkbox" id="symbols" /> Include Symbols</label>
+      </div>
+      <button class="btn btn-large" id="generate">Generate Password</button>
+      <input type="text" id="customInput" placeholder="Enter Custom Data" />
+      <button class="btn btn-large" id="generateQR">Generate QR Code</button>
+      <div id="qrResult"></div>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>
