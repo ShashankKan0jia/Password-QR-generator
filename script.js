@@ -4,7 +4,7 @@ const clipboardButton = document.getElementById("clipboard");
 clipboardButton.addEventListener("mouseover", function () {
   copyTooltipTimeout = setTimeout(function () {
     clipboardButton.innerText = "Copy to Clipboard";
-  }, 2000); // 2000 milliseconds = 2 seconds
+  }, 1000); // 1000 milliseconds = 1 seconds
 });
 
 clipboardButton.addEventListener("mouseout", function () {
