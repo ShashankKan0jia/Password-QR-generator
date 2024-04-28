@@ -1,54 +1,70 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap");
-
-body {
-  font-family: "Poppins", sans-serif;
+/* General Styles */
+body,
+html {
+  height: 100%;
   margin: 0;
 }
 
-.background {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-image: url("img1.jpg");
-  background-size: cover;
-  filter: brightness(0.6); /* Adjust the darkness of the background */
+/* Navbar */
+.navbar {
+  background-color: #353636; /* Dark background color */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  position: relative; /* Ensure navbar stays on top of background */
+  z-index: 3; /* Ensure navbar appears above background */
 }
 
-.container {
-  position: relative;
-  z-index: 1;
-  background-color: rgba(0, 0, 0, 0.8); /* Dark background color */
-  padding: 40px;
-  border-radius: 10px;
-  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
-  text-align: center;
-  max-width: 400px;
-  margin: 100px auto; /* Adjust the margin for centering */
-  color: #fff; /* Text color */
+.navbar-left {
+  display: flex;
+  align-items: center;
 }
 
-h2 {
-  margin-bottom: 20px;
+.nav-brand {
+  color: #feffff; /* Dark text color */
+  margin-left: 10px;
+  text-decoration: none;
+  font-size: 18px; /* Adjust font size as needed */
 }
 
-.result-container {
-  background-color: rgba(255, 255, 255, 0.2);
-  padding: 12px;
-  border-radius: 5px;
-  margin-bottom: 20px;
-}
-
-.result-container span {
-  font-weight: bold;
-}
-
-.btn {
+/* Menu Button */
+.menu-btn {
+  background: none;
   border: none;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+/* Main Container */
+.container {
+  display: flex;
+  flex-direction: column; /* Stack contents vertically */
+  align-items: center; /* Center horizontally */
+  justify-content: center; /* Center vertically */
+  position: relative; /* Ensure positioning context for the news section */
+  z-index: 2; /* Ensure content appears above background */
+  padding-top: 20px; /* Adjust spacing from top */
+}
+
+/* Options and QR Display */
+.options,
+.qr-display,
+.instructions,
+.suggestions,
+.about {
+  background-color: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 20px; /* Adjust spacing between sections */
+}
+
+/* Buttons */
+.btn {
   background-color: #4caf50;
   color: white;
-  font-size: 16px;
+  border: none;
   padding: 10px 20px;
   cursor: pointer;
   border-radius: 5px;
@@ -64,19 +80,63 @@ h2 {
   margin-top: 10px;
 }
 
+.btn-small {
+  margin-right: 10px;
+}
+
+/* Settings */
 .settings label {
   display: block;
   margin: 10px 0;
 }
 
-input[type="number"] {
-  width: calc(100% - 24px);
+/* Inputs */
+input[type="number"],
+input[type="text"] {
+  width: calc(100% - 20px);
   padding: 10px;
   margin-bottom: 20px;
+  border: none;
   border-radius: 5px;
-  border: 1px solid #ddd;
 }
 
+/* QR Code */
 #qrResult {
+  width: 200px; /* Adjust the width as needed */
+  height: 200px; /* Adjust the height as needed */
   margin-top: 20px;
+}
+
+#qrResult img {
+  max-width: 100%;
+  height: auto; /* Adjust based on aspect ratio of QR code */
+}
+
+.background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  background-image: url("img1.jpg");
+  background-size: cover;
+  filter: brightness(0.5);
+  z-index: 1; /* Ensure background appears behind content */
+}
+
+/* Add a glow effect when the section is scrolled into view */
+.instructions.glow,
+.suggestions.glow,
+.about.glow {
+  animation: glow 0.2s ease-in-out;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.8); /* Change glow color to white */
+}
+
+@keyframes glow {
+  0% {
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+  }
+  100% {
+    box-shadow: none;
+  }
 }
