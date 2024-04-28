@@ -6,51 +6,226 @@
     <link rel="stylesheet" href="styles.css" />
     <link rel="icon" type="image/png" href="img3.png" />
     <title>Password & QR Generator</title>
+    <style>
+      /* Add custom styles for the links */
+      .email-link {
+        color: #5ab9f4; /* Red color for email link */
+        text-decoration: none; /* Remove underline */
+      }
+
+      .email-link:hover {
+        text-decoration: underline; /* Underline on hover */
+      }
+
+      .github-link {
+        color: #5ab9f4; /* Blue color for GitHub link */
+      }
+
+      .linkedin-link {
+        color: #5ab9f4; /* LinkedIn color */
+      }
+
+      .navbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .navbar-left {
+        display: flex;
+        align-items: center;
+      }
+
+      .menu-btn {
+        margin-right: 10px;
+      }
+
+      .navbar-buttons {
+        display: flex;
+        align-items: center;
+      }
+
+      .navbar-buttons button {
+        margin-right: 10px;
+        background: none;
+        border: none;
+        font-size: inherit;
+        font-weight: bold;
+        color: inherit;
+        cursor: pointer;
+      }
+    </style>
   </head>
   <body>
     <header>
-      <div class="menu">
-        <a href="#about-us">About us</a>
+      <div class="navbar">
+        <div class="navbar-left">
+          <button class="menu-btn" id="menuBtn">&#9776;</button>
+          <a href="#" class="nav-brand">Password & QR Generator</a>
+        </div>
+        <div class="navbar-buttons">
+          <button class="btn btn-small" id="instructionsBtn">
+            Instructions
+          </button>
+          <button class="btn btn-small" id="suggestionsBtn">Suggestions</button>
+          <button class="btn btn-small" id="aboutBtn">About</button>
+        </div>
       </div>
-      <h1>Password & QR Generator</h1>
     </header>
     <div class="background"></div>
     <div class="container">
-      <h2>Password & QR Generator</h2>
-      <div class="result-container">
-        <span id="result"></span>
-        <button class="btn" id="clipboard">📋</button>
+      <div class="options">
+        <h2>Generate here !</h2>
+        <div class="result-container">
+          <span id="result"></span>
+          <button class="btn" id="clipboard">📋</button>
+        </div>
+        <input
+          type="number"
+          id="length"
+          placeholder="Password Length (4-20)"
+          min="4"
+          max="20"
+        />
+        <div class="settings">
+          <label
+            ><input type="checkbox" id="uppercase" /> Include Uppercase
+            Letters</label
+          >
+          <label
+            ><input type="checkbox" id="lowercase" /> Include Lowercase
+            Letters</label
+          >
+          <label><input type="checkbox" id="numbers" /> Include Numbers</label>
+          <label><input type="checkbox" id="symbols" /> Include Symbols</label>
+        </div>
+        <button class="btn btn-large" id="generate">Generate Password</button>
+        <input type="text" id="customInput" placeholder="Enter Custom Data" />
+        <button class="btn btn-large" id="generateQR">Generate QR Code</button>
       </div>
-      <input
-        type="number"
-        id="length"
-        placeholder="Password Length (4-20)"
-        min="4"
-        max="20"
-      />
-      <div class="settings">
-        <label
-          ><input type="checkbox" id="uppercase" /> Include Uppercase
-          Letters</label
-        >
-        <label
-          ><input type="checkbox" id="lowercase" /> Include Lowercase
-          Letters</label
-        >
-        <label><input type="checkbox" id="numbers" /> Include Numbers</label>
-        <label><input type="checkbox" id="symbols" /> Include Symbols</label>
+      <div class="qr-display">
+        <div id="qrResult"></div>
       </div>
-      <button class="btn btn-large" id="generate">Generate Password</button>
-      <input type="text" id="customInput" placeholder="Enter Custom Data" />
-      <button class="btn btn-large" id="generateQR">Generate QR Code</button>
-      <div id="qrResult"></div>
-      <div id="about-us" class="about-us">
-        <h3>About Us</h3>
-        <p>Created by: Shashank Kanojia</p>
-        <p>Email: kanojiashashank87@gmail.com</p>
-        <p>Contact Number: 6393774954</p>
+      <div class="instructions">
+        <h2>How to Use</h2>
+        <ul>
+          <li>
+            <strong>Generate Passwords:</strong>
+            <ul>
+              <li>
+                Enter the desired length of the password (between 4 and 20
+                characters) in the "Password Length" field.
+              </li>
+              <li>
+                Check the boxes to include uppercase letters, lowercase letters,
+                numbers, and symbols as per your preference.
+              </li>
+              <li>
+                Click the "Generate Password" button to generate a random
+                password based on your criteria.
+              </li>
+            </ul>
+          </li>
+          <li>
+            <strong>Copy to Clipboard:</strong>
+            <ul>
+              <li>
+                Once a password is generated, you can click the clipboard icon
+                (📋) next to the generated password to copy it to your
+                clipboard.
+              </li>
+            </ul>
+          </li>
+          <li>
+            <strong>Generate QR Code:</strong>
+            <ul>
+              <li>
+                Optionally, you can generate a QR code for the generated
+                password or any custom data.
+              </li>
+              <li>
+                Click the "Generate QR Code" button to create a QR code for the
+                password or enter custom data in the input field and then click
+                the button.
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+      <div class="suggestions">
+        <h2>Making Strong Passwords</h2>
+        <ul>
+          <li>
+            <strong>Length:</strong> Aim for passwords with a minimum length of
+            12 characters. Longer passwords are generally more secure.
+          </li>
+          <li>
+            <strong>Complexity:</strong> Include a mix of uppercase letters,
+            lowercase letters, numbers, and symbols in your password to increase
+            its complexity.
+          </li>
+          <li>
+            <strong>Avoid Common Words:</strong> Avoid using easily guessable
+            words, phrases, or common patterns in your password.
+          </li>
+          <li>
+            <strong>Randomness:</strong> Use random combinations of characters
+            rather than predictable sequences to make your password harder to
+            crack.
+          </li>
+          <li>
+            <strong>Avoid Personal Information:</strong> Do not include personal
+            information such as your name, birthdate, or any easily accessible
+            information in your password.
+          </li>
+          <li>
+            <strong>Unique Passwords:</strong> Use unique passwords for
+            different accounts to prevent a security breach on one platform from
+            affecting others.
+          </li>
+          <li>
+            <strong>Regular Updates:</strong> Regularly update your passwords,
+            especially for sensitive accounts, to maintain security.
+          </li>
+        </ul>
+        <p>
+          Remember to store your passwords securely and consider using a
+          reputable password manager to manage and generate complex passwords
+          for your accounts.
+        </p>
+      </div>
+      <div class="about">
+        <h2>About Me</h2>
+        <p>
+          <li><strong>Made by:</strong> Shashank Kanojia</li>
+          <li>
+            <strong>Email:</strong>
+            <a href="mailto:kanojiashashank87@gmail.com" class="email-link"
+              >kanojiashashank87@gmail.com</a
+            >
+          </li>
+          <li>
+            <strong>GitHub:</strong>
+            <a
+              href="https://github.com/ShashankKan0jia"
+              target="_blank"
+              class="github-link"
+              >ShashankKan0jia</a
+            >
+          </li>
+          <li>
+            <strong>LinkedIn:</strong>
+            <a
+              href="https://www.linkedin.com/in/shashank-kanojia-a2413924b/"
+              target="_blank"
+              class="linkedin-link"
+              >Shashank Kanojia</a
+            >
+          </li>
+        </p>
       </div>
     </div>
+
     <script src="script.js"></script>
   </body>
 </html>
