@@ -1,15 +1,43 @@
+// Smooth scrolling to section when button is clicked
+document
+  .getElementById("instructionsBtn")
+  .addEventListener("click", function () {
+    scrollToSection(".instructions");
+  });
+
+document
+  .getElementById("suggestionsBtn")
+  .addEventListener("click", function () {
+    scrollToSection(".suggestions");
+  });
+
+document.getElementById("aboutBtn").addEventListener("click", function () {
+  scrollToSection(".about");
+});
+
+function scrollToSection(sectionSelector) {
+  const section = document.querySelector(sectionSelector);
+  section.scrollIntoView({ behavior: "smooth" });
+
+  // Add glow effect when section is scrolled into view
+  section.classList.add("glow");
+  setTimeout(() => {
+    section.classList.remove("glow");
+  }, 200); // Remove glow effect after 0.2 seconds
+}
+
 let copyTooltipTimeout;
 const clipboardButton = document.getElementById("clipboard");
 
 clipboardButton.addEventListener("mouseover", function () {
   copyTooltipTimeout = setTimeout(function () {
     clipboardButton.innerText = "Copy to Clipboard";
-  }, 1000); // 1000 milliseconds = 1 seconds
+  }, 500);
 });
 
 clipboardButton.addEventListener("mouseout", function () {
   clearTimeout(copyTooltipTimeout);
-  clipboardButton.innerText = "📋"; // Reverting back to clipboard icon
+  clipboardButton.innerText = "📋";
 });
 
 clipboardButton.addEventListener("click", function () {
@@ -51,15 +79,9 @@ document.getElementById("generateQR").addEventListener("click", function () {
   const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${encodeURIComponent(
     inputText
   )}`;
-
   document.getElementById(
     "qrResult"
   ).innerHTML = `<img src="${qrUrl}" alt="QR Code" />`;
-
-  // Retain custom input text
-  if (!document.getElementById("result").innerText.trim()) {
-    document.getElementById("customInput").value = inputText;
-  }
 });
 
 function generatePassword(lower, upper, number, symbol, length) {
@@ -72,13 +94,16 @@ function generatePassword(lower, upper, number, symbol, length) {
   const typesArr = [{ lower }, { upper }, { number }, { symbol }].filter(
     (item) => Object.values(item)[0]
   );
-  if (typesArr.length === 0) return "";
 
-  let password = "";
-  for (let i = 0; i < length; i++) {
+  if (typesArr.length === 0 || !length) {
+    return "";
+  }
+
+  const generatedPassword = Array.from({ length }, () => {
     const type = typesArr[Math.floor(Math.random() * typesArr.length)];
     const funcName = Object.keys(type)[0];
-    password += randomFunc[funcName]();
-  }
-  return password;
+    return randomFunc[funcName]();
+  }).join("");
+
+  return generatedPassword;
 }
