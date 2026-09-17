@@ -85,11 +85,12 @@ document.getElementById("generateQR").addEventListener("click", function () {
 });
 
 function generatePassword(lower, upper, number, symbol, length) {
+  const symbols = "!@#$%^&*(){}[]=<>/,.";
   const randomFunc = {
     lower: () => String.fromCharCode(getSecureRandomIndex(26) + 97),
     upper: () => String.fromCharCode(getSecureRandomIndex(26) + 65),
     number: () => String.fromCharCode(getSecureRandomIndex(10) + 48),
-    symbol: () => "!@#$%^&*(){}[]=<>/,.".charAt(getSecureRandomIndex(19)),
+    symbol: () => symbols.charAt(getSecureRandomIndex(symbols.length)),
   };
   const typesArr = [{ lower }, { upper }, { number }, { symbol }].filter(
     (item) => Object.values(item)[0]
