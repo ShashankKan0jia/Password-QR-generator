@@ -86,10 +86,10 @@ document.getElementById("generateQR").addEventListener("click", function () {
 
 function generatePassword(lower, upper, number, symbol, length) {
   const randomFunc = {
-    lower: () => String.fromCharCode(Math.floor(Math.random() * 26) + 97),
-    upper: () => String.fromCharCode(Math.floor(Math.random() * 26) + 65),
-    number: () => String.fromCharCode(Math.floor(Math.random() * 10) + 48),
-    symbol: () => "!@#$%^&*(){}[]=<>/,.".charAt(Math.floor(Math.random() * 14)),
+    lower: () => String.fromCharCode(getSecureRandomIndex(26) + 97),
+    upper: () => String.fromCharCode(getSecureRandomIndex(26) + 65),
+    number: () => String.fromCharCode(getSecureRandomIndex(10) + 48),
+    symbol: () => "!@#$%^&*(){}[]=<>/,.".charAt(getSecureRandomIndex(19)),
   };
   const typesArr = [{ lower }, { upper }, { number }, { symbol }].filter(
     (item) => Object.values(item)[0]
@@ -100,10 +100,15 @@ function generatePassword(lower, upper, number, symbol, length) {
   }
 
   const generatedPassword = Array.from({ length }, () => {
-    const type = typesArr[Math.floor(Math.random() * typesArr.length)];
+    const type = typesArr[getSecureRandomIndex(typesArr.length)];
     const funcName = Object.keys(type)[0];
     return randomFunc[funcName]();
   }).join("");
 
   return generatedPassword;
+}
+
+function getSecureRandomIndex(max) {
+  const randomValue = crypto.getRandomValues(new Uint32Array(1))[0];
+  return Math.floor((randomValue / 2 ** 32) * max);
 }
