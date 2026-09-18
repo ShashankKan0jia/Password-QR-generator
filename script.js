@@ -48,7 +48,8 @@ clipboardButton.addEventListener("click", function () {
   }
   navigator.clipboard
     .writeText(password)
-    .then(() => alert("Password copied to clipboard!"));
+    .then(() => alert("Password copied to clipboard!"))
+    .catch(() => alert("Unable to copy password. Please copy it manually."));
 });
 
 document.getElementById("generate").addEventListener("click", function () {
