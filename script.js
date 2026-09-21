@@ -53,7 +53,13 @@ clipboardButton.addEventListener("click", function () {
 });
 
 document.getElementById("generate").addEventListener("click", function () {
-  const length = parseInt(document.getElementById("length").value);
+  const length = parseInt(document.getElementById("length").value, 10);
+
+  if (!Number.isInteger(length) || length < 4 || length > 20) {
+    alert("Password length must be between 4 and 20 characters.");
+    return;
+  }
+
   const hasUpper = document.getElementById("uppercase").checked;
   const hasLower = document.getElementById("lowercase").checked;
   const hasNumber = document.getElementById("numbers").checked;
