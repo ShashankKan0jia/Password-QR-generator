@@ -19,11 +19,10 @@ function scrollToSection(sectionSelector) {
   const section = document.querySelector(sectionSelector);
   section.scrollIntoView({ behavior: "smooth" });
 
-  // Add glow effect when section is scrolled into view
   section.classList.add("glow");
   setTimeout(() => {
     section.classList.remove("glow");
-  }, 200); // Remove glow effect after 0.2 seconds
+  }, 200);
 }
 
 let copyTooltipTimeout;
@@ -46,6 +45,12 @@ clipboardButton.addEventListener("click", function () {
     alert("No password to copy!");
     return;
   }
+
+  if (!navigator.clipboard?.writeText) {
+    alert("Clipboard access is unavailable. Please copy the password manually.");
+    return;
+  }
+
   navigator.clipboard
     .writeText(password)
     .then(() => alert("Password copied to clipboard!"))
