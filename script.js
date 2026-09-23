@@ -122,6 +122,13 @@ function generatePassword(lower, upper, number, symbol, length) {
 }
 
 function getSecureRandomIndex(max) {
-  const randomValue = crypto.getRandomValues(new Uint32Array(1))[0];
-  return Math.floor((randomValue / 2 ** 32) * max);
+  const range = 2 ** 32;
+  const limit = range - (range % max);
+  const randomValues = new Uint32Array(1);
+
+  do {
+    crypto.getRandomValues(randomValues);
+  } while (randomValues[0] >= limit);
+
+  return randomValues[0] % max;
 }
