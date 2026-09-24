@@ -93,7 +93,7 @@ document.getElementById("generateQR").addEventListener("click", function () {
   )}`;
   document.getElementById(
     "qrResult"
-  ).innerHTML = `<img src="${qrUrl}" alt="QR Code" />`;
+  ).innerHTML = `<img src="${qrUrl}" alt="QR Code" loading="lazy" />`;
 });
 
 function generatePassword(lower, upper, number, symbol, length) {
