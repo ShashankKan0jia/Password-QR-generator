@@ -91,9 +91,14 @@ document.getElementById("generateQR").addEventListener("click", function () {
   const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${encodeURIComponent(
     inputText
   )}`;
-  document.getElementById(
-    "qrResult"
-  ).innerHTML = `<img src="${qrUrl}" alt="QR Code" loading="lazy" />`;
+  const qrResult = document.getElementById("qrResult");
+  qrResult.replaceChildren();
+
+  const qrImage = document.createElement("img");
+  qrImage.src = qrUrl;
+  qrImage.alt = "QR Code";
+  qrImage.loading = "lazy";
+  qrResult.appendChild(qrImage);
 });
 
 function generatePassword(lower, upper, number, symbol, length) {
