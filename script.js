@@ -28,16 +28,22 @@ function scrollToSection(sectionSelector) {
 let copyTooltipTimeout;
 const clipboardButton = document.getElementById("clipboard");
 
-clipboardButton.addEventListener("mouseover", function () {
+function showCopyTooltip() {
+  clearTimeout(copyTooltipTimeout);
   copyTooltipTimeout = setTimeout(function () {
     clipboardButton.innerText = "Copy to Clipboard";
   }, 500);
-});
+}
 
-clipboardButton.addEventListener("mouseout", function () {
+function hideCopyTooltip() {
   clearTimeout(copyTooltipTimeout);
   clipboardButton.innerText = "📋";
-});
+}
+
+clipboardButton.addEventListener("mouseover", showCopyTooltip);
+clipboardButton.addEventListener("mouseout", hideCopyTooltip);
+clipboardButton.addEventListener("focus", showCopyTooltip);
+clipboardButton.addEventListener("blur", hideCopyTooltip);
 
 clipboardButton.addEventListener("click", function () {
   const password = document.getElementById("result").innerText;
