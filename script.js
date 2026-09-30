@@ -17,6 +17,9 @@ document.getElementById("aboutBtn").addEventListener("click", function () {
 
 function scrollToSection(sectionSelector) {
   const section = document.querySelector(sectionSelector);
+  if (!section) {
+    return;
+  }
   section.scrollIntoView({ behavior: "smooth" });
 
   section.classList.add("glow");
