@@ -107,6 +107,9 @@ document.getElementById("generateQR").addEventListener("click", function () {
   qrImage.src = qrUrl;
   qrImage.alt = "QR Code";
   qrImage.loading = "lazy";
+  qrImage.addEventListener("error", () => {
+    qrResult.textContent = "Unable to load the QR code. Please try again.";
+  });
   qrResult.appendChild(qrImage);
 });
 
