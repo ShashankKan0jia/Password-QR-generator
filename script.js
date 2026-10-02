@@ -78,6 +78,12 @@ document.getElementById("generate").addEventListener("click", function () {
   const hasLower = document.getElementById("lowercase").checked;
   const hasNumber = document.getElementById("numbers").checked;
   const hasSymbol = document.getElementById("symbols").checked;
+
+  if (!hasUpper && !hasLower && !hasNumber && !hasSymbol) {
+    alert("Select at least one character type.");
+    return;
+  }
+
   document.getElementById("result").innerText = generatePassword(
     hasLower,
     hasUpper,
