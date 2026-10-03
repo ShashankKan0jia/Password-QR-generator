@@ -135,13 +135,31 @@ function generatePassword(lower, upper, number, symbol, length) {
     return "";
   }
 
-  const generatedPassword = Array.from({ length }, () => {
-    const type = typesArr[getSecureRandomIndex(typesArr.length)];
+  const requiredCharacters = typesArr.map((type) => {
     const funcName = Object.keys(type)[0];
     return randomFunc[funcName]();
-  }).join("");
+  });
 
-  return generatedPassword;
+  const remainingCharacters = Array.from(
+    { length: Math.max(0, length - requiredCharacters.length) },
+    () => {
+      const type = typesArr[getSecureRandomIndex(typesArr.length)];
+      const funcName = Object.keys(type)[0];
+      return randomFunc[funcName]();
+    }
+  );
+
+  const characters = [...requiredCharacters, ...remainingCharacters];
+
+  for (let i = characters.length - 1; i > 0; i -= 1) {
+    const swapIndex = getSecureRandomIndex(i + 1);
+    [characters[i], characters[swapIndex]] = [
+      characters[swapIndex],
+      characters[i],
+    ];
+  }
+
+  return characters.join("");
 }
 
 function getSecureRandomIndex(max) {
