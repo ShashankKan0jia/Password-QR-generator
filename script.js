@@ -94,12 +94,19 @@ document.getElementById("generate").addEventListener("click", function () {
 });
 
 document.getElementById("generateQR").addEventListener("click", function () {
+  const customInput = document.getElementById("customInput");
+  const customData = customInput.value.trim();
+
   const inputText =
-    document.getElementById("result").innerText.trim() ||
-    document.getElementById("customInput").value.trim();
+    document.getElementById("result").innerText.trim() || customData;
 
   if (!inputText) {
     alert("Please generate a password or enter custom data!");
+    return;
+  }
+
+  if (inputText.length > 2000) {
+    alert("Custom data must be 2000 characters or fewer.");
     return;
   }
 
