@@ -170,9 +170,17 @@ function generatePassword(lower, upper, number, symbol, length) {
 }
 
 function getSecureRandomIndex(max) {
+  if (!Number.isInteger(max) || max <= 0) {
+    throw new RangeError("Random index range must be a positive integer.");
+  }
+
   const range = 2 ** 32;
   const limit = range - (range % max);
   const randomValues = new Uint32Array(1);
+
+  if (!globalThis.crypto?.getRandomValues) {
+    throw new Error("Secure randomness is unavailable in this browser.");
+  }
 
   do {
     crypto.getRandomValues(randomValues);
