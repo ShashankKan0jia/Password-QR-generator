@@ -183,7 +183,7 @@ function getSecureRandomIndex(max) {
   }
 
   do {
-    crypto.getRandomValues(randomValues);
+    globalThis.crypto.getRandomValues(randomValues);
   } while (randomValues[0] >= limit);
 
   return randomValues[0] % max;
