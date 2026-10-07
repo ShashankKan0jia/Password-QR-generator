@@ -31,6 +31,10 @@ function scrollToSection(sectionSelector) {
 let copyTooltipTimeout;
 const clipboardButton = document.getElementById("clipboard");
 
+if (!clipboardButton) {
+  throw new Error("Clipboard button is unavailable.");
+}
+
 function showCopyTooltip() {
   clearTimeout(copyTooltipTimeout);
   copyTooltipTimeout = setTimeout(function () {
