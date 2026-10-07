@@ -114,6 +114,10 @@ document.getElementById("generateQR").addEventListener("click", function () {
     inputText
   )}`;
   const qrResult = document.getElementById("qrResult");
+  if (!qrResult) {
+    alert("QR code display is unavailable. Please reload the page.");
+    return;
+  }
   qrResult.replaceChildren();
 
   const qrImage = document.createElement("img");
