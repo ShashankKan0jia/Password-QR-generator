@@ -53,7 +53,12 @@ clipboardButton.addEventListener("focus", showCopyTooltip);
 clipboardButton.addEventListener("blur", hideCopyTooltip);
 
 clipboardButton.addEventListener("click", function () {
-  const password = document.getElementById("result").innerText;
+  const resultElement = document.getElementById("result");
+  if (!resultElement) {
+    alert("Password result is unavailable. Please reload the page.");
+    return;
+  }
+  const password = resultElement.innerText;
   if (!password) {
     alert("No password to copy!");
     return;
