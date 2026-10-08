@@ -104,6 +104,10 @@ document.getElementById("generate").addEventListener("click", function () {
 
 document.getElementById("generateQR").addEventListener("click", function () {
   const customInput = document.getElementById("customInput");
+  if (!customInput) {
+    alert("Custom data input is unavailable. Please reload the page.");
+    return;
+  }
   const customData = customInput.value.trim();
 
   const inputText =
