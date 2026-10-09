@@ -139,7 +139,7 @@ document.getElementById("generateQR").addEventListener("click", function () {
 
   const qrImage = document.createElement("img");
   qrImage.src = qrUrl;
-  qrImage.alt = "QR Code";
+  qrImage.alt = "QR code for the generated password or custom data";
   qrImage.loading = "lazy";
   qrImage.addEventListener("error", () => {
     qrResult.textContent = "Unable to load the QR code. Please try again.";
