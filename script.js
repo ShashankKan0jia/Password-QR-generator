@@ -93,13 +93,20 @@ document.getElementById("generate").addEventListener("click", function () {
     return;
   }
 
-  document.getElementById("result").innerText = generatePassword(
-    hasLower,
-    hasUpper,
-    hasNumber,
-    hasSymbol,
-    length
-  );
+  try {
+    document.getElementById("result").innerText = generatePassword(
+      hasLower,
+      hasUpper,
+      hasNumber,
+      hasSymbol,
+      length
+    );
+  } catch (error) {
+    console.error("Password generation failed:", error);
+    alert(
+      "Secure password generation is unavailable in this browser. Please try a supported browser."
+    );
+  }
 });
 
 document.getElementById("generateQR").addEventListener("click", function () {
