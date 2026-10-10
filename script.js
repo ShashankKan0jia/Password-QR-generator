@@ -115,7 +115,7 @@ document.getElementById("generateQR").addEventListener("click", function () {
     alert("Password result is unavailable. Please reload the page.");
     return;
   }
-  const inputText = resultElement.innerText.trim() || customData;
+  const inputText = customData || resultElement.innerText.trim();
 
   if (!inputText) {
     alert("Please generate a password or enter custom data!");
