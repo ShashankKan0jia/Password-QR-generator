@@ -91,8 +91,14 @@ document.getElementById("generate").addEventListener("click", function () {
     return;
   }
 
+  const resultElement = document.getElementById("result");
+  if (!resultElement) {
+    alert("Password result is unavailable. Please reload the page.");
+    return;
+  }
+
   try {
-    document.getElementById("result").innerText = generatePassword(
+    resultElement.innerText = generatePassword(
       hasLower,
       hasUpper,
       hasNumber,
