@@ -74,7 +74,7 @@ clipboardButton?.addEventListener("click", function () {
 });
 
 document.getElementById("generate").addEventListener("click", function () {
-  const length = parseInt(document.getElementById("length").value, 10);
+  const length = Number(document.getElementById("length").value);
 
   if (!Number.isInteger(length) || length < 4 || length > 20) {
     alert("Password length must be between 4 and 20 characters.");
