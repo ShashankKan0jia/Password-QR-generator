@@ -31,9 +31,7 @@ function scrollToSection(sectionSelector) {
 let copyTooltipTimeout;
 const clipboardButton = document.getElementById("clipboard");
 
-if (!clipboardButton) {
-  throw new Error("Clipboard button is unavailable.");
-}
+
 
 function showCopyTooltip() {
   clearTimeout(copyTooltipTimeout);
@@ -47,12 +45,12 @@ function hideCopyTooltip() {
   clipboardButton.innerText = "📋";
 }
 
-clipboardButton.addEventListener("mouseover", showCopyTooltip);
-clipboardButton.addEventListener("mouseout", hideCopyTooltip);
-clipboardButton.addEventListener("focus", showCopyTooltip);
-clipboardButton.addEventListener("blur", hideCopyTooltip);
+clipboardButton?.addEventListener("mouseover", showCopyTooltip);
+clipboardButton?.addEventListener("mouseout", hideCopyTooltip);
+clipboardButton?.addEventListener("focus", showCopyTooltip);
+clipboardButton?.addEventListener("blur", hideCopyTooltip);
 
-clipboardButton.addEventListener("click", function () {
+clipboardButton?.addEventListener("click", function () {
   const resultElement = document.getElementById("result");
   if (!resultElement) {
     alert("Password result is unavailable. Please reload the page.");
