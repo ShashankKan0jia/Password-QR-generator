@@ -1,17 +1,17 @@
 // Smooth scrolling to section when button is clicked
 document
   .getElementById("instructionsBtn")
-  .addEventListener("click", function () {
+  ?.addEventListener("click", function () {
     scrollToSection(".instructions");
   });
 
 document
   .getElementById("suggestionsBtn")
-  .addEventListener("click", function () {
+  ?.addEventListener("click", function () {
     scrollToSection(".suggestions");
   });
 
-document.getElementById("aboutBtn").addEventListener("click", function () {
+document.getElementById("aboutBtn")?.addEventListener("click", function () {
   scrollToSection(".about");
 });
 
