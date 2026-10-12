@@ -153,6 +153,7 @@ document.getElementById("generateQR").addEventListener("click", function () {
   qrImage.alt = "QR code for the generated password or custom data";
   qrImage.loading = "lazy";
   qrImage.addEventListener("error", () => {
+    qrResult.replaceChildren();
     qrResult.textContent = "Unable to load the QR code. Please try again.";
   });
   qrResult.appendChild(qrImage);
