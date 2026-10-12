@@ -152,6 +152,8 @@ document.getElementById("generateQR").addEventListener("click", function () {
   qrImage.src = qrUrl;
   qrImage.alt = "QR code for the generated password or custom data";
   qrImage.loading = "lazy";
+  qrImage.width = 150;
+  qrImage.height = 150;
   qrImage.referrerPolicy = "no-referrer";
   qrImage.addEventListener("error", () => {
     qrResult.replaceChildren();
