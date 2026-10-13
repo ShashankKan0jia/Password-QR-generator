@@ -63,15 +63,46 @@ clipboardButton?.addEventListener("click", function () {
   }
 
   if (!navigator.clipboard?.writeText) {
-    alert("Clipboard access is unavailable. Please copy the password manually.");
+    if (copyPasswordWithFallback(password)) {
+      alert("Password copied to clipboard!");
+    } else {
+      alert("Unable to copy password. Please copy it manually.");
+    }
     return;
   }
 
   navigator.clipboard
     .writeText(password)
     .then(() => alert("Password copied to clipboard!"))
-    .catch(() => alert("Unable to copy password. Please copy it manually."));
+    .catch(() => {
+      if (!copyPasswordWithFallback(password)) {
+        alert("Unable to copy password. Please copy it manually.");
+        return;
+      }
+      alert("Password copied to clipboard!");
+    });
 });
+
+function copyPasswordWithFallback(password) {
+  const temporaryInput = document.createElement("textarea");
+  temporaryInput.value = password;
+  temporaryInput.setAttribute("readonly", "");
+  temporaryInput.style.position = "fixed";
+  temporaryInput.style.opacity = "0";
+  document.body.appendChild(temporaryInput);
+  temporaryInput.select();
+
+  let copied = false;
+  try {
+    copied = document.execCommand("copy");
+  } catch (error) {
+    copied = false;
+  } finally {
+    temporaryInput.remove();
+  }
+
+  return copied;
+}
 
 document.getElementById("generate").addEventListener("click", function () {
   const length = Number(document.getElementById("length").value);
