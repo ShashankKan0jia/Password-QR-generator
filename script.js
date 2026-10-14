@@ -104,7 +104,7 @@ function copyPasswordWithFallback(password) {
   return copied;
 }
 
-document.getElementById("generate").addEventListener("click", function () {
+document.getElementById("generate")?.addEventListener("click", function () {
   const length = Number(document.getElementById("length").value);
 
   if (!Number.isInteger(length) || length < 4 || length > 20) {
@@ -144,7 +144,7 @@ document.getElementById("generate").addEventListener("click", function () {
   }
 });
 
-document.getElementById("generateQR").addEventListener("click", function () {
+document.getElementById("generateQR")?.addEventListener("click", function () {
   const customInput = document.getElementById("customInput");
   if (!customInput) {
     alert("Custom data input is unavailable. Please reload the page.");
