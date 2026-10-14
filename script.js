@@ -169,6 +169,15 @@ document.getElementById("generateQR").addEventListener("click", function () {
     return;
   }
 
+  if (
+    !customData &&
+    !window.confirm(
+      "This will send the generated password to an external QR service. Continue?"
+    )
+  ) {
+    return;
+  }
+
   const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${encodeURIComponent(
     inputText
   )}`;
