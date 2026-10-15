@@ -107,7 +107,12 @@ function copyPasswordWithFallback(password) {
 }
 
 document.getElementById("generate")?.addEventListener("click", function () {
-  const length = Number(document.getElementById("length").value);
+  const lengthInput = document.getElementById("length");
+  if (!lengthInput) {
+    alert("Password length input is unavailable. Please reload the page.");
+    return;
+  }
+  const length = Number(lengthInput.value);
 
   if (!Number.isInteger(length) || length < 4 || length > 20) {
     alert("Password length must be between 4 and 20 characters.");
