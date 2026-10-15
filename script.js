@@ -84,6 +84,7 @@ clipboardButton?.addEventListener("click", function () {
 });
 
 function copyPasswordWithFallback(password) {
+  const previousFocus = document.activeElement;
   const temporaryInput = document.createElement("textarea");
   temporaryInput.value = password;
   temporaryInput.setAttribute("readonly", "");
@@ -99,6 +100,7 @@ function copyPasswordWithFallback(password) {
     copied = false;
   } finally {
     temporaryInput.remove();
+    previousFocus?.focus();
   }
 
   return copied;
