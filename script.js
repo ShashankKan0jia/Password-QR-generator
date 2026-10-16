@@ -20,7 +20,12 @@ function scrollToSection(sectionSelector) {
   if (!section) {
     return;
   }
-  section.scrollIntoView({ behavior: "smooth" });
+  const prefersReducedMotion = window.matchMedia(
+    "(prefers-reduced-motion: reduce)"
+  ).matches;
+  section.scrollIntoView({
+    behavior: prefersReducedMotion ? "auto" : "smooth",
+  });
 
   section.classList.add("glow");
   setTimeout(() => {
