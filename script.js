@@ -41,6 +41,17 @@ document.getElementById("aboutBtn")?.addEventListener("click", function () {
   scrollToSection(".about");
 });
 
+navbarButtons?.addEventListener("click", (event) => {
+  if (!event.target.closest("button")) {
+    return;
+  }
+
+  navbarButtons.hidden = true;
+  menuButton?.setAttribute("aria-expanded", "false");
+  menuButton?.setAttribute("aria-label", "Open menu");
+  menuButton?.focus();
+});
+
 function scrollToSection(sectionSelector) {
   const section = document.querySelector(sectionSelector);
   if (!section) {
