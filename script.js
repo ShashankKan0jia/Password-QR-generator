@@ -14,6 +14,17 @@ if (menuButton && navbarButtons) {
   });
 }
 
+document.addEventListener("keydown", (event) => {
+  if (event.key !== "Escape" || !menuButton || !navbarButtons || navbarButtons.hidden) {
+    return;
+  }
+
+  navbarButtons.hidden = true;
+  menuButton.setAttribute("aria-expanded", "false");
+  menuButton.setAttribute("aria-label", "Open menu");
+  menuButton.focus();
+});
+
 document
   .getElementById("instructionsBtn")
   ?.addEventListener("click", function () {
