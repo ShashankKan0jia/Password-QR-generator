@@ -185,6 +185,10 @@ document.getElementById("generate")?.addEventListener("click", function () {
       hasSymbol,
       length
     );
+    // A password-based QR code must not keep displaying an older password.
+    if (!document.getElementById("customInput")?.value.trim()) {
+      document.getElementById("qrResult")?.replaceChildren();
+    }
   } catch (error) {
     console.error("Password generation failed:", error);
     alert(
