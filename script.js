@@ -1,4 +1,19 @@
 // Smooth scrolling to section when button is clicked
+// Toggle the navigation actions from the menu button.
+const menuButton = document.getElementById("menuBtn");
+const navbarButtons = document.querySelector(".navbar-buttons");
+
+if (menuButton && navbarButtons) {
+  navbarButtons.hidden = true;
+  menuButton.setAttribute("aria-expanded", "false");
+  menuButton.addEventListener("click", () => {
+    const isExpanded = menuButton.getAttribute("aria-expanded") === "true";
+    navbarButtons.hidden = isExpanded;
+    menuButton.setAttribute("aria-expanded", String(!isExpanded));
+    menuButton.setAttribute("aria-label", isExpanded ? "Open menu" : "Close menu");
+  });
+}
+
 document
   .getElementById("instructionsBtn")
   ?.addEventListener("click", function () {
