@@ -222,12 +222,11 @@ document.getElementById("generateQR")?.addEventListener("click", function () {
     return;
   }
 
-  if (
-    !customData &&
-    !window.confirm(
-      "This will send the generated password to an external QR service. Continue?"
-    )
-  ) {
+  const confirmationMessage = customData
+    ? "This will send your custom data to an external QR service. Continue only if you trust that service with this data."
+    : "This will send the generated password to an external QR service. Continue only if you trust that service with this password.";
+
+  if (!window.confirm(confirmationMessage)) {
     return;
   }
 
