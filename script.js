@@ -197,6 +197,11 @@ document.getElementById("generate")?.addEventListener("click", function () {
   }
 });
 
+// Do not leave a QR code visible after its source data has changed.
+document.getElementById("customInput")?.addEventListener("input", function () {
+  document.getElementById("qrResult")?.replaceChildren();
+});
+
 document.getElementById("generateQR")?.addEventListener("click", function () {
   const customInput = document.getElementById("customInput");
   if (!customInput) {
