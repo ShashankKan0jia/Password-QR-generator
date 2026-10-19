@@ -52,6 +52,8 @@ navbarButtons?.addEventListener("click", (event) => {
   menuButton?.focus();
 });
 
+const glowTimeouts = new WeakMap();
+
 function scrollToSection(sectionSelector) {
   const section = document.querySelector(sectionSelector);
   if (!section) {
@@ -65,9 +67,12 @@ function scrollToSection(sectionSelector) {
   });
 
   section.classList.add("glow");
-  setTimeout(() => {
+  clearTimeout(glowTimeouts.get(section));
+  const timeoutId = setTimeout(() => {
     section.classList.remove("glow");
+    glowTimeouts.delete(section);
   }, 200);
+  glowTimeouts.set(section, timeoutId);
 }
 
 let copyTooltipTimeout;
