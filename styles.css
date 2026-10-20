@@ -144,9 +144,14 @@ input[type="text"] {
 /* Keep keyboard focus visible for interactive controls. */
 .btn:focus-visible,
 .menu-btn:focus-visible,
-.navbar-buttons button:focus-visible,
-input:focus-visible {
+.navbar-buttons button:focus-visible {
   outline: 2px solid #ffffff;
+  outline-offset: 2px;
+}
+
+/* Use a dark focus ring so inputs remain visible on light backgrounds. */
+input:focus-visible {
+  outline: 2px solid #315f9b;
   outline-offset: 2px;
 }
 
