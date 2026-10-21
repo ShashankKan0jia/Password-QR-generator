@@ -258,6 +258,10 @@ document.getElementById("generateQR")?.addEventListener("click", function () {
   qrImage.height = 150;
   qrImage.referrerPolicy = "no-referrer";
   qrImage.addEventListener("error", () => {
+    // An older image request must not replace a newer QR code or status.
+    if (!qrResult.contains(qrImage)) {
+      return;
+    }
     qrResult.replaceChildren();
     qrResult.textContent = "Unable to load the QR code. Please try again.";
   });
