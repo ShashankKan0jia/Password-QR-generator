@@ -166,3 +166,21 @@ input:focus-visible {
     transition-duration: 0.01ms !important;
   }
 }
+
+/* Keep navigation usable on narrow screens. */
+@media (max-width: 600px) {
+  .navbar {
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .navbar-buttons {
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .navbar-buttons button {
+    margin-right: 0;
+  }
+}
