@@ -66,8 +66,16 @@ function scrollToSection(sectionSelector) {
     behavior: prefersReducedMotion ? "auto" : "smooth",
   });
 
-  section.classList.add("glow");
   clearTimeout(glowTimeouts.get(section));
+  glowTimeouts.delete(section);
+  section.classList.remove("glow");
+
+  // Reduced-motion users should not receive the decorative glow animation.
+  if (prefersReducedMotion) {
+    return;
+  }
+
+  section.classList.add("glow");
   const timeoutId = setTimeout(() => {
     section.classList.remove("glow");
     glowTimeouts.delete(section);
