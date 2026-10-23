@@ -32,6 +32,7 @@ html {
 .menu-btn {
   background: none;
   border: none;
+  color: #fff;
   font-size: 20px;
   cursor: pointer;
 }
