@@ -185,3 +185,8 @@ input:focus-visible {
     margin-right: 0;
   }
 }
+
+/* Keep the collapsed menu hidden despite the flex display rule. */
+.navbar-buttons[hidden] {
+  display: none;
+}
