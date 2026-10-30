@@ -261,7 +261,9 @@ document.getElementById("generateQR")?.addEventListener("click", function () {
 
   const qrImage = document.createElement("img");
   qrImage.src = qrUrl;
-  qrImage.alt = "QR code for the generated password or custom data";
+  qrImage.alt = hasCustomData
+    ? "QR code encoding custom data"
+    : "QR code encoding the generated password";
   qrImage.loading = "lazy";
   qrImage.width = 150;
   qrImage.height = 150;
