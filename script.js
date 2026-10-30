@@ -221,14 +221,15 @@ document.getElementById("generateQR")?.addEventListener("click", function () {
     alert("Custom data input is unavailable. Please reload the page.");
     return;
   }
-  const customData = customInput.value.trim();
+  const customData = customInput.value;
+  const hasCustomData = customData.trim().length > 0;
 
   const resultElement = document.getElementById("result");
   if (!resultElement) {
     alert("Password result is unavailable. Please reload the page.");
     return;
   }
-  const inputText = customData || resultElement.innerText.trim();
+  const inputText = hasCustomData ? customData : resultElement.innerText.trim();
 
   if (!inputText) {
     alert("Please generate a password or enter custom data!");
@@ -240,7 +241,7 @@ document.getElementById("generateQR")?.addEventListener("click", function () {
     return;
   }
 
-  const confirmationMessage = customData
+  const confirmationMessage = hasCustomData
     ? "This will send your custom data to an external QR service. Continue only if you trust that service with this data."
     : "This will send the generated password to an external QR service. Continue only if you trust that service with this password.";
 
